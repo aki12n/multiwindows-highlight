@@ -3,11 +3,27 @@
 	"displayName": "multiWindows-highLight",
 	"description": "highlight same words in multi windows",
 	"version": "0.0.1",
+	"publisher": "aki12n",
+	"license": "SEE LICENSE IN LICENSE.txt",
+	"icon": "images/multiwindows-highlight.png",
+	"bugs": {
+		"url": "https://github.com/aki12n/multiwindows-highlight/issues"
+	},
+	"homepage": "https://github.com/aki12n/multiwindows-highlight/blob/master/README.md",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/aki12n/multiwindows-highlight.git"
+	},
 	"engines": {
 		"vscode": "^1.40.0"
 	},
 	"categories": [
 		"Other"
+	],
+	"keywords": [
+		"match",
+		"highlight",
+		"search"
 	],
 	"activationEvents": [
 		"*"

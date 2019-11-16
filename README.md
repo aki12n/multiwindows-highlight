@@ -4,4 +4,4 @@
 
 * Highlight same words in multi windows
 
-![multiwindows-highlight](images/multiwindows-highlight.mov)
+![multiwindows-highlight](images/multiwindows-highlight.gif)
