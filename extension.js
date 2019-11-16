@@ -10,7 +10,7 @@ var curDecorator;
  * @param {vscode.ExtensionContext} context
  */
 function activate(context) {
-	selectSameWords();
+	decorateSameWords();
 	exports.activate = activate;
 	// カーソル移動イベントを検知
 	const disposable = vscode.window.onDidChangeTextEditorSelection(event => {
@@ -19,7 +19,7 @@ function activate(context) {
 			deleteDecorator(curDecorator);
 			return;
 		}
-		selectSameWords(event.textEditor.selection);
+		decorateSameWords(event.textEditor.selection);
 	});
 	context.subscriptions.push(disposable);
 }
@@ -30,7 +30,7 @@ function deleteDecorator(deleteDecorator) {
 		deleteDecorator.decorator.dispose();
 	}
 }
-function selectSameWords(curSelection) {
+function decorateSameWords(curSelection) {
 	const editor = vscode.window.activeTextEditor;
 	if (!editor) {
 		return;
@@ -60,13 +60,12 @@ function selectSameWords(curSelection) {
 
 	otheEditors.forEach((eachEditor) => {
 		let ranges = new Array();
-		// // console.log(eachEditor.selections);
-		// eachEditor.selections = [];
 		for (var i = 0; i < eachEditor.document.lineCount; ++i) {
 			for (var j = 0; j < eachEditor.document.lineAt(i).text.length; ++j){
-				if (~eachEditor.document.lineAt(i).text.indexOf(searchWord, j)) {
-					const startPosition = new vscode.Position(i, eachEditor.document.lineAt(i).text.indexOf(searchWord, j));
-					const endPosition = new vscode.Position(i, eachEditor.document.lineAt(i).text.indexOf(searchWord, j) + searchWord.length);
+				var curPosition = eachEditor.document.lineAt(i).text.indexOf(searchWord, j);
+				if (~curPosition) {
+					const startPosition = new vscode.Position(i, curPosition);
+					const endPosition = new vscode.Position(i, curPosition + searchWord.length);
 					const range = new vscode.Range(startPosition, endPosition);
 					ranges.push(range);
 					j += searchWord.length;
@@ -79,7 +78,6 @@ function selectSameWords(curSelection) {
 
 // this method is called when your extension is deactivated
 function deactivate() {
-	// curDecorator.decorator.dispose();
 }
 
 module.exports = {
