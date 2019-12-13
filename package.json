@@ -2,7 +2,7 @@
 	"name": "multiwindows-highlight",
 	"displayName": "multiWindows-highLight",
 	"description": "highlight same words in multi windows",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"publisher": "aki12n",
 	"license": "SEE LICENSE IN LICENSE.txt",
 	"icon": "images/multiwindows-highlight.png",
@@ -29,8 +29,7 @@
 		"*"
 	],
 	"main": "./extension.js",
-	"contributes": {
-	},
+	"contributes": {},
 	"scripts": {
 		"test": "node ./test/runTest.js"
 	},
