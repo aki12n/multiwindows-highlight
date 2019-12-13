@@ -42,11 +42,13 @@ function decorateSameWords(curSelection) {
 			'borderWidth': '1px',
 			'borderStyle': 'solid',
 			'light': {
+				'overviewRulerColor': 'rgba(124,77, 255, 0.3)',
 				'backgroundColor': 'rgba(124,77, 255, 0.3)',
 				'borderColor': 'rgba(124,77, 255, 0.4)',
 				'color': 'rgba(255, 0, 0, 1.0)'
 			},
 			'dark': {
+				'overviewRulerColor': 'rgba(255, 255, 204, 0.3)',
 				'backgroundColor': 'rgba(255, 255, 204, 0.3)',
 				'borderColor': 'rgba(255, 255, 204, 0.4)',
 				'color': 'rgba(255, 255, 0, 1.0)'
@@ -68,7 +70,7 @@ function decorateSameWords(curSelection) {
 					const endPosition = new vscode.Position(i, curPosition + searchWord.length);
 					const range = new vscode.Range(startPosition, endPosition);
 					ranges.push(range);
-					j += searchWord.length;
+					j = curPosition + searchWord.length - 1;
 				}
 			}
 		}
