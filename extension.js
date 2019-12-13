@@ -70,7 +70,7 @@ function decorateSameWords(curSelection) {
 					const endPosition = new vscode.Position(i, curPosition + searchWord.length);
 					const range = new vscode.Range(startPosition, endPosition);
 					ranges.push(range);
-					j += searchWord.length;
+					j = curPosition + searchWord.length - 1;
 				}
 			}
 		}
