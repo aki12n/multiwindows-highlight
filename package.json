@@ -2,7 +2,7 @@
 	"name": "multiwindows-highlight",
 	"displayName": "multiWindows-highLight",
 	"description": "highlight same words in multi windows",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"publisher": "aki12n",
 	"license": "SEE LICENSE IN LICENSE.txt",
 	"icon": "images/multiwindows-highlight.png",
@@ -30,6 +30,44 @@
 	],
 	"main": "./extension.js",
 	"contributes": {
+		"configuration":[
+			{
+				"type": "object",
+				"title": "multiwindows-highlight",
+				"properties": {
+					"multiwindows-highlight.lightBackgroundColor": {
+						"type": "string",
+						"default": "rgba(124, 77, 255, 0.3)",
+						"description": "highlight background color for light thema. ex: rgba(255, 0, 155, 0.5)"
+					},
+					"multiwindows-highlight.lightBorderColor": {
+						"type": "string",
+						"default": "rgba(124, 77, 255, 0.4)",
+						"description": "highlight border color for light thema. ex: rgba(255, 0, 155, 0.5)"
+					},
+					"multiwindows-highlight.lightColor": {
+						"type": "string",
+						"default": "rgba(255, 0, 0, 1.0)",
+						"description": "highlight font color for light thema. ex: rgba(255, 0, 155, 0.5)"
+					},
+					"multiwindows-highlight.darkBackgroundColor": {
+						"type": "string",
+						"default": "rgba(255, 255, 204, 0.3)",
+						"description": "highlight background color for dark thema. ex: rgba(255, 0, 155, 0.5)"
+					},
+					"multiwindows-highlight.darkBorderColor": {
+						"type": "string",
+						"default": "rgba(255, 255, 204, 0.4)",
+						"description": "highlight border color for dark thema. ex: rgba(255, 0, 155, 0.5)"
+					},
+					"multiwindows-highlight.darkColor": {
+						"type": "string",
+						"default": "rgba(255, 255, 0, 1.0)",
+						"description": "highlight font color for dark thema. ex: rgba(255, 0, 155, 0.5)"
+					}
+				}
+			}
+		]
 	},
 	"scripts": {
 		"test": "node ./test/runTest.js"

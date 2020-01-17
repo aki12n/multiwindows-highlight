@@ -2,6 +2,7 @@
 // Import the module and reference it with the alias vscode in your code below
 const vscode = require('vscode');
 var curDecorator;
+let userConf;
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -10,6 +11,9 @@ var curDecorator;
  * @param {vscode.ExtensionContext} context
  */
 function activate(context) {
+	// ユーザ設定読み込み
+	userConf = vscode.workspace.getConfiguration('multiwindows-highlight');
+
 	decorateSameWords();
 	exports.activate = activate;
 	// カーソル移動イベントを検知
@@ -42,16 +46,16 @@ function decorateSameWords(curSelection) {
 			'borderWidth': '1px',
 			'borderStyle': 'solid',
 			'light': {
-				'overviewRulerColor': 'rgba(124,77, 255, 0.3)',
-				'backgroundColor': 'rgba(124,77, 255, 0.3)',
-				'borderColor': 'rgba(124,77, 255, 0.4)',
-				'color': 'rgba(255, 0, 0, 1.0)'
+				'overviewRulerColor': userConf.get('lightBackgroundColor'),
+				'backgroundColor': userConf.get('lightBackgroundColor'),
+				'borderColor': userConf.get('lightBorderColor'),
+				'color': userConf.get('lightColor')
 			},
 			'dark': {
-				'overviewRulerColor': 'rgba(255, 255, 204, 0.3)',
-				'backgroundColor': 'rgba(255, 255, 204, 0.3)',
-				'borderColor': 'rgba(255, 255, 204, 0.4)',
-				'color': 'rgba(255, 255, 0, 1.0)'
+				'overviewRulerColor': userConf.get('darkBackgroundColor'),
+				'backgroundColor': userConf.get('darkBackgroundColor'),
+				'borderColor': userConf.get('darkBorderColor'),
+				'color': userConf.get('darkColor')
 			}
 		})
 	};
