@@ -64,6 +64,11 @@
 						"type": "string",
 						"default": "rgba(255, 255, 0, 1.0)",
 						"description": "highlight font color for dark thema. ex: rgba(255, 0, 155, 0.5)"
+					},
+					"multiwindows-highlight.caseInsensitive": {
+						"type": "boolean",
+						"default": false,
+						"description": "Case insensitive highlight option."
 					}
 				}
 			}
