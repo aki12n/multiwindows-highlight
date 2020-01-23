@@ -2,7 +2,7 @@
 	"name": "multiwindows-highlight",
 	"displayName": "multiWindows-highLight",
 	"description": "highlight same words in multi windows",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"publisher": "aki12n",
 	"license": "SEE LICENSE IN LICENSE.txt",
 	"icon": "images/multiwindows-highlight.png",
