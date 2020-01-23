@@ -1,4 +1,6 @@
 # Change Log
+## 0.0.4
+- resolve #14 : Case insensitive highlight
 
 ## 0.0.3
 - resolve #10 : user color setting
