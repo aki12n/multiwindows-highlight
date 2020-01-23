@@ -68,7 +68,14 @@ function decorateSameWords(curSelection) {
 		let ranges = new Array();
 		for (var i = 0; i < eachEditor.document.lineCount; ++i) {
 			for (var j = 0; j < eachEditor.document.lineAt(i).text.length; ++j){
-				var curPosition = eachEditor.document.lineAt(i).text.indexOf(searchWord, j);
+				var curPosition;
+				if (userConf.get("caseInsensitive")) {
+					// 大文字小文字を区別しない
+					curPosition = eachEditor.document.lineAt(i).text.toLowerCase().indexOf(searchWord.toLowerCase(), j);	
+				} else {
+					curPosition = eachEditor.document.lineAt(i).text.indexOf(searchWord, j);
+				}
+				
 				if (~curPosition) {
 					const startPosition = new vscode.Position(i, curPosition);
 					const endPosition = new vscode.Position(i, curPosition + searchWord.length);
