@@ -1,4 +1,7 @@
 # Change Log
+## 0.0.5
+- resolve? #17 : memory heap error (node)
+
 ## 0.0.4
 - resolve #14 : Case insensitive highlight
 
