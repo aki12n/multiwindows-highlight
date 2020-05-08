@@ -9,5 +9,9 @@
 	},
 	"exclude": [
 		"node_modules"
-	]
+	],
+	"runtimeArgs": [
+		"--max-old-space-size=4096",
+		"--expose-gc"
+	],
 }
