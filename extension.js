@@ -3,6 +3,7 @@
 const vscode = require('vscode');
 var curDecorator;
 let userConf;
+var onDidChangeVisibleTextEditorsFlg = false;
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -16,6 +17,11 @@ function activate(context) {
 
 	decorateSameWords();
 	exports.activate = activate;
+	const disposable1 = vscode.window.onDidChangeVisibleTextEditors(event => {
+		onDidChangeVisibleTextEditorsFlg = true;
+		deleteDecorator(curDecorator);
+	});
+	context.subscriptions.push(disposable1);
 	// カーソル移動イベントを検知
 	const disposable = vscode.window.onDidChangeTextEditorSelection(event => {
 		if (event.textEditor.selection.isEmpty) {
@@ -36,7 +42,8 @@ function deleteDecorator(deleteDecorator) {
 }
 function decorateSameWords(curSelection) {
 	const editor = vscode.window.activeTextEditor;
-	if (!editor) {
+	if ((!editor) || (onDidChangeVisibleTextEditorsFlg == true)) {
+		onDidChangeVisibleTextEditorsFlg = false;
 		return;
 	}
 	// 既にあるデコレーションをクリア
