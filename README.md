@@ -13,6 +13,7 @@ You can set highlight colors.
 | Setting                                     | Description                                                            | Type    | Default Value            |
 | ------------------------------------------- | ---------------------------------------------------------------------- | ------- | ------------------------ |
 | multiwindows-highlight.caseInsensitive      | Case insensitive highlight option.                                     | boolean | False                    |
+| multiwindows-highlight.matchWholeWord       | Match whole word highlight option.                                     | boolean | False                    |
 | multiwindows-highlight.darkBackgroundColor  | highlight background color for dark thema. ex: rgba(255, 0, 155, 0.5)  | string  | rgba(255, 255, 204, 0.3) |
 | multiwindows-highlight.darkBorderColor      | highlight border color for dark thema. ex: rgba(255, 0, 155, 0.5)      | string  | rgba(255, 255, 204, 0.4) |
 | multiwindows-highlight.darkColor            | highlight font color for dark thema. ex: rgba(255, 0, 155, 0.5)        | string  | rgba(255, 255, 0, 1.0)   |
