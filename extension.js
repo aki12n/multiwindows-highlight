@@ -66,31 +66,37 @@ function decorateSameWords(curSelection) {
 
 	//選択している文字列を取得
 	var searchWord = editor.document.getText(curSelection);
+	var searchPattern = escapeRegex(searchWord);
+	var searchOption = 'g';
 	var otheEditors = vscode.window.visibleTextEditors;
+
+	if (userConf.get("caseInsensitive")) {
+		// 大文字小文字を区別しない
+		searchOption += 'i';
+	}
+	if (userConf.get("matchWholeWord")) {
+		// 全文字が一致するのみ
+		searchPattern = '\\b' + searchPattern + '\\b';
+	}
+	const regex = RegExp(searchPattern, searchOption);
 
 	otheEditors.forEach((eachEditor) => {
 		let ranges = new Array();
 		for (var i = 0; i < eachEditor.document.lineCount; ++i) {
-			for (var j = 0; j < eachEditor.document.lineAt(i).text.length; ++j){
-				var curPosition;
-				if (userConf.get("caseInsensitive")) {
-					// 大文字小文字を区別しない
-					curPosition = eachEditor.document.lineAt(i).text.toLowerCase().indexOf(searchWord.toLowerCase(), j);	
-				} else {
-					curPosition = eachEditor.document.lineAt(i).text.indexOf(searchWord, j);
-				}
-				
-				if (~curPosition) {
-					const startPosition = new vscode.Position(i, curPosition);
-					const endPosition = new vscode.Position(i, curPosition + searchWord.length);
-					const range = new vscode.Range(startPosition, endPosition);
-					ranges.push(range);
-					j = curPosition + searchWord.length - 1;
-				}
+			const targetText = eachEditor.document.lineAt(i).text;
+			let result;
+			while ((result = regex.exec(targetText)) != null) {
+				const startPosition = new vscode.Position(i, result.index);
+				const endPosition = new vscode.Position(i, result.index + searchWord.length);
+				const range = new vscode.Range(startPosition, endPosition);
+				ranges.push(range);
 			}
 		}
 		eachEditor.setDecorations(curDecorator.decorator, ranges);
 	});
+}
+function escapeRegex(string) {
+    return string.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
 }
 
 // this method is called when your extension is deactivated

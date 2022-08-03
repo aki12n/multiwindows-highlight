@@ -69,6 +69,11 @@
 						"type": "boolean",
 						"default": false,
 						"description": "Case insensitive highlight option."
+					},
+					"multiwindows-highlight.matchWholeWord": {
+						"type": "boolean",
+						"default": false,
+						"description": "Match whole word highlight option."
 					}
 				}
 			}
