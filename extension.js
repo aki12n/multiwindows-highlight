@@ -2,7 +2,6 @@
 // Import the module and reference it with the alias vscode in your code below
 const vscode = require('vscode');
 var curDecorator;
-let userConf;
 var onDidChangeVisibleTextEditorsFlg = false;
 
 // this method is called when your extension is activated
@@ -12,11 +11,7 @@ var onDidChangeVisibleTextEditorsFlg = false;
  * @param {vscode.ExtensionContext} context
  */
 function activate(context) {
-	// ユーザ設定読み込み
-	userConf = vscode.workspace.getConfiguration('multiwindows-highlight');
-
 	decorateSameWords();
-	exports.activate = activate;
 	const disposable1 = vscode.window.onDidChangeVisibleTextEditors(event => {
 		onDidChangeVisibleTextEditorsFlg = true;
 		deleteDecorator(curDecorator);
@@ -41,8 +36,10 @@ function deleteDecorator(deleteDecorator) {
 	}
 }
 function decorateSameWords(curSelection) {
+	// ユーザ設定読み込み、
+	const userConf = vscode.workspace.getConfiguration('multiwindows-highlight');
 	const editor = vscode.window.activeTextEditor;
-	if ((!editor) || (onDidChangeVisibleTextEditorsFlg == true)) {
+	if ((!editor) || (!curSelection) || (onDidChangeVisibleTextEditorsFlg == true)) {
 		onDidChangeVisibleTextEditorsFlg = false;
 		return;
 	}
